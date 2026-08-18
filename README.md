@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚡ Mohit Singh Chahar - Personal Portfolio
 
-## Getting Started
+A modern, high-performance developer portfolio built with **Next.js 16**, **React 19**, **Tailwind CSS v4**, and **Framer Motion**. Featuring a sleek dark aesthetic, dynamic animations, interactive skill marquees, and responsive design.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 🚀 **Modern Tech Stack**: Next.js 16 (App Router), React 19, TypeScript
+- 🎨 **Sleek Dark Cyber Aesthetics**: Custom cursor spotlight, glowing electric borders, glitch text effects, and smooth micro-animations
+- 💻 **Interactive Sections**:
+  - **Hero**: Dynamic typewriter effect, glitch heading, and interactive avatar
+  - **Skills**: Categorized multi-directional marquee with electric border accents
+  - **Projects**: Interactive showcase featuring live demos, github links, and tech badges
+  - **Timeline**: Education and experience roadmap
+  - **Contact & Footer**: Direct reach-out form and social links
+- 📱 **Fully Responsive**: Optimized for desktop, tablet, and mobile devices
+- ⚡ **SEO & Performance**: Optimized asset delivery, metadata, and fast static generation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Built With
 
-## Learn More
+- **Framework**: [Next.js](https://nextjs.org/)
+- **UI Library**: [React 19](https://react.dev/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Components**: [shadcn/ui](https://ui.shadcn.com/)
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Getting Started
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Prerequisites
 
-## Deploy on Vercel
+- Node.js 18+ or later
+- npm, yarn, or pnpm
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Installation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/<your-username>/portfolio.git
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd portfolio
+   ```
+
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## 📦 Scripts
+
+- `npm run dev` - Start development server with Turbopack
+- `npm run build` - Create an optimized production build
+- `npm run start` - Run the production build locally
+- `npm run lint` - Run ESLint checks
+
+---
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).
