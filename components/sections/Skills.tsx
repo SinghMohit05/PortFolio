@@ -41,6 +41,10 @@ import {
   Lock,
   ChevronDown,
   ChevronUp,
+  Smartphone,
+  Zap,
+  Bot,
+  Workflow,
 } from "lucide-react";
 import { LogoLoop } from "@/components/ui/LogoLoop";
 import { ElectricBorder } from "@/components/ui/ElectricBorder";
@@ -93,20 +97,25 @@ const allSkills: Skill[] = [
   { name: "HTML5 / CSS3", icon: LayoutTemplate, category: "Frontend", level: "Advanced", description: "Semantic markup, modern styling, and responsive web structure.", color: "#E34F26" },
   { name: "Git & GitHub", icon: GithubIcon, category: "Database & DevOps", level: "Advanced", description: "Distributed version control, branching workflows, and collaboration.", color: "#F05032" },
   { name: "TypeScript", icon: Braces, category: "Programming & Tools", level: "Intermediate", description: "Typed JavaScript for scalable and maintainable codebases.", color: "#3178C6" },
-  { name: "Next.js 16", icon: Globe, category: "Frontend", level: "Intermediate", description: "Production React framework with App Router, SSR, and API routes.", color: "#E0E0E0" },
+  { name: "Next.js", icon: Globe, category: "Frontend", level: "Intermediate", description: "Production React framework with App Router, SSR, and API routes.", color: "#E0E0E0" },
 
   // Secondary Stack & Databases
+  { name: "React Native (Expo)", icon: Smartphone, category: "Frontend", level: "Intermediate", description: "Cross-platform mobile apps for Android & iOS with synchronized APIs.", color: "#61DAFB" },
+  { name: "FastAPI", icon: Zap, category: "Backend", level: "Advanced", description: "High-performance Python async REST APIs with Pydantic schemas and OpenAPI docs.", color: "#009688" },
+  { name: "GenAI (OpenAI API)", icon: Bot, category: "Backend", level: "Intermediate", description: "LLM prompt engineering, email generation, and AI-driven automation workflows.", color: "#10A37F" },
   { name: "Express.js", icon: Layers, category: "Backend", level: "Intermediate", description: "Fast, minimal REST API middleware framework for Node.js.", color: "#CCCCCC" },
   { name: "Tailwind CSS", icon: Wind, category: "Frontend", level: "Advanced", description: "Utility-first CSS framework for rapid UI styling.", color: "#38BDF8" },
-  { name: "MongoDB", icon: Database, category: "Database & DevOps", level: "Intermediate", description: "Flexible NoSQL document database for modern applications.", color: "#47A248" },
-  { name: "MySQL", icon: Database, category: "Database & DevOps", level: "Intermediate", description: "Relational database querying and structured data storage.", color: "#00758F" },
   { name: "PostgreSQL", icon: DatabaseZap, category: "Database & DevOps", level: "Intermediate", description: "Advanced open-source relational database system.", color: "#4169E1" },
+  { name: "Prisma ORM", icon: Boxes, category: "Database & DevOps", level: "Intermediate", description: "Next-generation TypeScript ORM with schema migrations and type safety.", color: "#2D3748" },
+  { name: "BullMQ & Redis", icon: Workflow, category: "Database & DevOps", level: "Intermediate", description: "Distributed background task queues, atomic locks, rate-limiting, and memory caching.", color: "#DC382D" },
+  { name: "MySQL", icon: Database, category: "Database & DevOps", level: "Intermediate", description: "Relational database querying and structured data storage.", color: "#00758F" },
+  { name: "MongoDB", icon: Database, category: "Database & DevOps", level: "Intermediate", description: "Flexible NoSQL document database for modern applications.", color: "#47A248" },
   { name: "REST APIs", icon: Cloud, category: "Backend", level: "Advanced", description: "Architecting and consuming RESTful web services.", color: "#38BDF8" },
   { name: "Docker", icon: Container, category: "Database & DevOps", level: "Intermediate", description: "Containerizing microservices and managing environment consistency.", color: "#2496ED" },
   { name: "Linux Administration", icon: TerminalSquare, category: "Database & DevOps", level: "Intermediate", description: "Command-line navigation, shell scripting, and environment config.", color: "#FCC624" },
 
   // Security & Backend Systems
-  { name: "JWT Auth", icon: Key, category: "Backend", level: "Intermediate", description: "Stateless token-based authentication and role-based access control.", color: "#F59E0B" },
+  { name: "JWT Auth & OAuth", icon: Key, category: "Backend", level: "Intermediate", description: "Stateless token authentication, refresh tokens, and role-based access control.", color: "#F59E0B" },
   { name: "Flask", icon: Flame, category: "Backend", level: "Intermediate", description: "Lightweight Python micro-framework for web APIs.", color: "#FFFFFF" },
   { name: "Kali Linux", icon: Terminal, category: "Cybersecurity", level: "Intermediate", description: "Penetration testing environment and security toolkit.", color: "#557C93" },
   { name: "OWASP Top 10", icon: ShieldCheck, category: "Cybersecurity", level: "Intermediate", description: "Web application vulnerability identification and remediation.", color: "#10B981" },
@@ -115,7 +124,8 @@ const allSkills: Skill[] = [
   { name: "Wireshark", icon: Activity, category: "Cybersecurity", level: "Proficient", description: "Network packet capture and protocol analysis.", color: "#1679A7" },
   { name: "Metasploit", icon: Crosshair, category: "Cybersecurity", level: "Proficient", description: "Vulnerability validation and security research framework.", color: "#EF4444" },
 
-  // Libraries & Workflow Tools
+  // Languages & Workflow Tools
+  { name: "C / C++ & Java", icon: Cpu, category: "Programming & Tools", level: "Intermediate", description: "Systems programming, object-oriented design, and algorithms.", color: "#00599C" },
   { name: "Redux Toolkit", icon: Network, category: "Frontend", level: "Proficient", description: "Centralized state management for complex React apps.", color: "#764ABC" },
   { name: "Framer Motion", icon: Activity, category: "Frontend", level: "Intermediate", description: "Declarative animations and interactive UI transitions.", color: "#F012BE" },
   { name: "Firebase", icon: Flame, category: "Backend", level: "Proficient", description: "Real-time backend database and authentication services.", color: "#FFCA28" },
@@ -133,9 +143,10 @@ const categories: SkillCategory[] = [
   "Programming & Tools",
 ];
 
-// Marquee rows splitting
-const marqueeRow1 = allSkills.slice(0, 15);
-const marqueeRow2 = allSkills.slice(15);
+// Marquee rows dynamically split in halves
+const midPoint = Math.ceil(allSkills.length / 2);
+const marqueeRow1 = allSkills.slice(0, midPoint);
+const marqueeRow2 = allSkills.slice(midPoint);
 
 /* ------------------------------------------------------------------ */
 /*  Interactive Skill Card with Mouse Spotlight Effect                */

@@ -161,10 +161,10 @@ export default function Contact() {
                     Phone
                   </p>
                   <a
-                    href="tel:+918279365569"
+                    href="tel:+918279365568"
                     className="text-base font-semibold text-foreground transition-colors hover:text-primary"
                   >
-                    +91 8279365569
+                    +91 8279365568
                   </a>
                 </div>
               </div>

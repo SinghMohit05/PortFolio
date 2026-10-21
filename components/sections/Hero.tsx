@@ -10,8 +10,9 @@ import HeroAvatar from "@/components/ui/HeroAvatar";
 import { Typewriter } from "react-simple-typewriter";
 
 const stats = [
-  { value: "5+", label: "Projects Completed" },
-  { value: "15+", label: "Technologies" },
+  { value: "4+", label: "Featured Projects" },
+  { value: "3", label: "Internships" },
+  { value: "20+", label: "Technologies" },
 ];
 
 const fadeUpVariant = {
@@ -103,10 +104,10 @@ export default function Hero({ scrollProgress }: { scrollProgress?: MotionValue<
                   words={[
                     "Full-Stack Developer",
                     "Cybersecurity Enthusiast",
-                    "Secure Web Developer",
+                    "Next.js & React Specialist",
+                    "AI & GenAI Integrator",
+                    "FastAPI & Node.js Developer",
                     "Ethical Hacking Learner",
-                    "Problem Solver",
-                    "Open Source Contributor",
                   ]}
                   loop={0}
                   cursor
@@ -125,7 +126,7 @@ export default function Hero({ scrollProgress }: { scrollProgress?: MotionValue<
               animate="visible"
               className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg"
             >
-              Passionate about building scalable web applications and strengthening digital security. I combine modern full-stack development with cybersecurity principles to create clean, efficient, and secure solutions that make a real impact.
+              Computer Science undergraduate specializing in Cyber Security, building full-stack web and mobile applications with Next.js, React Native, Node.js, and FastAPI. Passionate about GenAI integration, scalable systems, and modern digital defense.
             </motion.p>
 
             {/* CTA Buttons */}

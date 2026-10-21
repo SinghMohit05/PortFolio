@@ -25,6 +25,54 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: "Dispatchly",
+    tagline: "AI-Powered Email Outreach & Scheduling Platform",
+    description:
+      "A scalable full-stack email outreach platform featuring AI personalization, high-throughput BullMQ background job queues, and real-time delivery via Resend.",
+    detailedOverview: [
+      "Dispatchly was engineered to streamline high-volume outbound campaigns with intelligent lead targeting and automated delivery pipelines.",
+      "Integrates OpenAI API and GenAI capabilities to dynamically draft customized, high-converting cold email copies tailored to individual lead personas.",
+      "Leverages BullMQ and Redis to execute distributed background jobs, ensuring rate-limit adherence, exponential backoff retries, and atomic transaction recording in PostgreSQL."
+    ],
+    keyFeatures: [
+      { label: "GenAI Email Personalization", icon: Zap },
+      { label: "BullMQ & Redis Queue", icon: Activity },
+      { label: "Resend API Delivery", icon: Globe },
+      { label: "JWT & Role-Based Access", icon: Shield },
+    ],
+    techStack: ["React", "Node.js", "Express", "PostgreSQL", "BullMQ", "Redis", "OpenAI API", "Resend API"],
+    challenges: "Handling bursty outbound email volume without hitting provider rate limits or dropping jobs during worker restarts or network latency.",
+    solutions: "Implemented resilient BullMQ worker clusters with Redis concurrency controls, automatic retry policies, and Elasticsearch indexing for campaign search.",
+    architecture: "Decoupled architecture with React client, Express REST API, background worker threads, and PostgreSQL persistence with Redis caching.",
+    learnings: "Mastered distributed asynchronous job queuing, email deliverability protocols, and production-grade GenAI integrations.",
+    githubUrl: "https://github.com/SinghMohit05/Dispatchly",
+    image: "/images/dispatchly.jpg",
+  },
+  {
+    title: "Taskora",
+    tagline: "Cross-Platform Project & Task Management System",
+    description:
+      "A modern cross-platform productivity solution with interactive Kanban boards, sprint tracking, and seamless real-time web and Android synchronization.",
+    detailedOverview: [
+      "Taskora provides a unified productivity hub for engineering teams, bridging desktop browsers and mobile devices with synchronized task workflows.",
+      "Features a Next.js web application and an Android mobile client built with React Native and Expo, powered by a shared Express and TypeScript REST API with PostgreSQL and Prisma.",
+      "Secured with robust JWT authentication, bcrypt password hashing, strict Zod runtime schema validation, login rate limiting, and token revocation on logout."
+    ],
+    keyFeatures: [
+      { label: "Web & Android Sync", icon: Globe },
+      { label: "Interactive Kanban & Sprints", icon: Layers },
+      { label: "Zod Schema & JWT Security", icon: Shield },
+      { label: "Dockerized Architecture", icon: Database },
+    ],
+    techStack: ["Next.js", "React Native", "TypeScript", "Express", "PostgreSQL", "Prisma", "Docker", "Zod"],
+    challenges: "Maintaining reliable cross-platform state synchronization between web and mobile clients while preventing schema drift and unauthorized mutations.",
+    solutions: "Built a type-safe shared API layer using Prisma ORM and Zod validations, verified through a 17-assertion automated test suite and web-to-mobile sync test.",
+    architecture: "Shared monorepo contracts with Next.js frontend, React Native / Expo mobile app, and Dockerized Express backend.",
+    learnings: "Acquired deep hands-on expertise in cross-platform mobile development with Expo, Prisma database migrations, and multi-container Docker environments.",
+    githubUrl: "https://github.com/SinghMohit05/Taskora",
+    image: "/images/taskora.jpg",
+  },
+  {
     title: "VendorMart",
     tagline: "Streamlined Vendor & Inventory Management",
     description:
@@ -125,12 +173,13 @@ export default function ProjectCard() {
           {projects.map((project, index) => (
             <motion.article
               key={project.title}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
+              viewport={{ once: true, amount: 0.05 }}
               transition={{
-                opacity: { duration: 0.5, delay: index * 0.1 },
-                y: { duration: 0.5, delay: index * 0.1 },
+                duration: 0.45,
+                delay: index * 0.08,
+                ease: "easeOut",
               }}
               className="group project-card relative flex flex-col cursor-pointer will-change-transform bg-card border border-border/80 rounded-[22px] overflow-hidden"
               style={{
@@ -159,6 +208,8 @@ export default function ProjectCard() {
                   src={project.image}
                   alt={project.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority={index < 2}
                   className="object-cover transition-transform duration-300 ease-out"
                 />
               </div>
