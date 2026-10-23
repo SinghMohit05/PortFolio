@@ -1,8 +1,19 @@
 "use client";
 
+import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { CheckCircle2, Shield, Zap, Database, Globe, Layers, Activity } from "lucide-react";
+import {
+  CheckCircle2,
+  Shield,
+  Zap,
+  Database,
+  Globe,
+  Layers,
+  Activity,
+  ArrowUpRight,
+} from "lucide-react";
+import ScrollStack, { ScrollStackItem } from "@/components/ui/ScrollStack";
 
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */
@@ -35,10 +46,10 @@ const projects: Project[] = [
       "Leverages BullMQ and Redis to execute distributed background jobs, ensuring rate-limit adherence, exponential backoff retries, and atomic transaction recording in PostgreSQL."
     ],
     keyFeatures: [
-      { label: "GenAI Email Personalization", icon: Zap },
+      { label: "GenAI Personalization", icon: Zap },
       { label: "BullMQ & Redis Queue", icon: Activity },
       { label: "Resend API Delivery", icon: Globe },
-      { label: "JWT & Role-Based Access", icon: Shield },
+      { label: "JWT & RBAC Security", icon: Shield },
     ],
     techStack: ["React", "Node.js", "Express", "PostgreSQL", "BullMQ", "Redis", "OpenAI API", "Resend API"],
     challenges: "Handling bursty outbound email volume without hitting provider rate limits or dropping jobs during worker restarts or network latency.",
@@ -76,7 +87,7 @@ const projects: Project[] = [
     title: "VendorMart",
     tagline: "Streamlined Vendor & Inventory Management",
     description:
-      "A modern business management solution designed to simplify vendor and inventory operations from a centralized, secure dashboard.",
+      "A modern business management solution designed to simplify vendor and inventory operations from a centralized, secure real-time dashboard.",
     detailedOverview: [
       "VendorMart was conceived to solve the growing complexity of supply chain management for mid-sized retail businesses. The existing solutions were either too expensive or too convoluted for day-to-day operations.",
       "The platform provides a unified interface where managers can track stock levels in real-time, automate purchase orders, and monitor vendor performance metrics. It acts as a single source of truth for the entire procurement lifecycle.",
@@ -85,7 +96,7 @@ const projects: Project[] = [
     keyFeatures: [
       { label: "Real-time Inventory Tracking", icon: Activity },
       { label: "Automated Purchase Orders", icon: Zap },
-      { label: "Vendor Performance Analytics", icon: Layers },
+      { label: "Vendor Analytics", icon: Layers },
       { label: "Role-based Access Control", icon: Shield },
     ],
     techStack: ["Python", "FastAPI / Flask", "MySQL", "JWT Auth", "REST APIs"],
@@ -98,9 +109,9 @@ const projects: Project[] = [
   },
   {
     title: "VulnShop",
-    tagline: "A Purpose-Built Vulnerable Web App for Security Training",
+    tagline: "Purpose-Built Vulnerable Web App for Security Training",
     description:
-      "A deliberately vulnerable e-commerce platform built for security researchers to practice penetration testing and vulnerability assessment.",
+      "A deliberately vulnerable e-commerce platform built for security researchers to practice penetration testing, exploit development, and vulnerability assessment.",
     detailedOverview: [
       "VulnShop is an educational tool designed to provide a safe, legal environment for aspiring ethical hackers to practice their skills. It simulates a modern e-commerce platform but is intentionally riddled with common web vulnerabilities.",
       "The project maps directly to the OWASP Top 10, featuring vulnerabilities like SQL Injection, Cross-Site Scripting (XSS), Insecure Direct Object References (IDOR), and broken authentication mechanisms.",
@@ -108,9 +119,9 @@ const projects: Project[] = [
     ],
     keyFeatures: [
       { label: "OWASP Top 10 Vulnerabilities", icon: Shield },
-      { label: "Realistic E-commerce Workflows", icon: Globe },
+      { label: "Realistic E-commerce Flows", icon: Globe },
       { label: "Progress Tracking & Flags", icon: CheckCircle2 },
-      { label: "Dockerized for Easy Setup", icon: Layers },
+      { label: "Dockerized Isolation", icon: Layers },
     ],
     techStack: ["Python", "Flask", "MySQL", "Jinja2", "OWASP Top 10"],
     challenges: "Creating realistic vulnerabilities without making the entire application completely unstable or susceptible to unintentional external compromise during local usage.",
@@ -147,7 +158,7 @@ export default function ProjectCard() {
     >
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         {/* ── Section Header ── */}
-        <div className="mb-16 md:mb-20 text-center">
+        <div className="mb-12 md:mb-16 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -168,101 +179,115 @@ export default function ProjectCard() {
           </motion.p>
         </div>
 
-        {/* ── 2-Column Grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {projects.map((project, index) => (
-            <motion.article
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.05 }}
-              transition={{
-                duration: 0.45,
-                delay: index * 0.08,
-                ease: "easeOut",
-              }}
-              className="group project-card relative flex flex-col cursor-pointer will-change-transform bg-card border border-border/80 rounded-[22px] overflow-hidden"
-              style={{
-                boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
-                transition: "box-shadow 300ms ease, border-color 300ms ease, transform 300ms ease",
-              }}
-              whileHover={{
-                y: -6,
-                transition: {
-                  type: "spring",
-                  stiffness: 400,
-                  damping: 25,
-                },
-              }}
-            >
-              {/* ── Image Container ── */}
-              <div
-                className="project-card-image relative w-full overflow-hidden bg-slate-900/80"
-                style={{
-                  aspectRatio: "16 / 9",
-                  borderTopLeftRadius: "22px",
-                  borderTopRightRadius: "22px",
-                }}
+        {/* ── Scroll Stack Container (Full-Page Window Scroll) ── */}
+        <div className="relative w-full">
+          <ScrollStack
+            useWindowScroll={true}
+            itemDistance={160}
+            itemStackDistance={24}
+            stackPosition="90px"
+            itemScale={0.04}
+            baseScale={0.88}
+            dimAmount={0.22}
+            blurAmount={0}
+            tiltAmount={0}
+            rotationAmount={0}
+            holdDistance={200}
+            smoothScroll={false}
+            snap={false}
+            className="w-full"
+          >
+            {projects.map((project, index) => (
+              <ScrollStackItem
+                key={project.title}
+                itemClassName="p-5 sm:p-7 lg:p-8 bg-card/95 backdrop-blur-xl border border-white/10"
               >
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority={index < 2}
-                  className="object-cover transition-transform duration-300 ease-out"
-                />
-              </div>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center h-full">
+                  {/* Left Column: Image Preview */}
+                  <div className="w-full lg:col-span-5 relative group/img overflow-hidden rounded-2xl border border-white/10 bg-slate-950/60 shadow-lg aspect-[16/10] lg:h-[300px]">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 40vw"
+                      priority={index === 0}
+                      className="object-cover transition-transform duration-500 ease-out group-hover/img:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none" />
 
-              {/* ── Card Content ── */}
-              <div className="flex flex-col flex-grow p-6 sm:p-8">
-                {/* Title */}
-                <h3
-                  className="text-xl sm:text-2xl font-bold text-foreground"
-                >
-                  {project.title}
-                </h3>
+                    {/* Project Index Badge */}
+                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-xs font-mono font-medium text-white/90">
+                      0{index + 1} / 0{projects.length}
+                    </div>
+                  </div>
 
-                {/* Tagline */}
-                <p
-                  className="mt-1.5 text-sm font-medium text-primary"
-                >
-                  {project.tagline}
-                </p>
+                  {/* Right Column: Project details */}
+                  <div className="w-full lg:col-span-7 flex flex-col justify-between">
+                    <div>
+                      {/* Tagline / Category */}
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-xs uppercase tracking-wider font-semibold text-primary px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20">
+                          {project.tagline}
+                        </span>
+                      </div>
 
-                {/* Description */}
-                <p
-                  className="mt-3 text-sm leading-relaxed line-clamp-3 flex-grow text-muted-foreground"
-                >
-                  {project.description}
-                </p>
+                      {/* Title */}
+                      <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+                        {project.title}
+                      </h3>
 
-                {/* Tech Badges */}
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {project.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-md px-2.5 py-1 text-xs font-medium bg-primary/15 border border-primary/30 text-primary"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                      {/* Description */}
+                      <p className="mt-2.5 text-sm sm:text-base text-muted-foreground leading-relaxed line-clamp-3">
+                        {project.description}
+                      </p>
+
+                      {/* Key Features */}
+                      <div className="mt-4 grid grid-cols-2 gap-2">
+                        {project.keyFeatures.map((feat) => {
+                          const IconComponent = feat.icon;
+                          return (
+                            <div
+                              key={feat.label}
+                              className="flex items-center gap-2 text-xs text-foreground/80 bg-white/[0.04] border border-white/[0.08] px-2.5 py-1.5 rounded-lg"
+                            >
+                              <IconComponent className="size-3.5 text-primary shrink-0" />
+                              <span className="truncate">{feat.label}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+
+                      {/* Tech Badges */}
+                      <div className="mt-4 flex flex-wrap gap-1.5">
+                        {project.techStack.map((tech) => (
+                          <span
+                            key={tech}
+                            className="rounded-md px-2 py-0.5 text-xs font-medium bg-primary/10 border border-primary/25 text-primary"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Bottom Action */}
+                    <div className="mt-5 pt-4 border-t border-white/10 flex items-center justify-between">
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-white/10 hover:bg-white/20 border border-white/15 text-foreground hover:text-white transition-all duration-200"
+                      >
+                        <GithubIcon className="size-4" />
+                        <span>Source Code</span>
+                        <ArrowUpRight className="size-3.5 opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      </a>
+                    </div>
+                  </div>
                 </div>
-
-                <div className="mt-6 pt-5 border-t border-border/60">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-200 text-foreground hover:text-primary"
-                  >
-                    <GithubIcon className="size-4" />
-                    Source Code →
-                  </a>
-                </div>
-              </div>
-            </motion.article>
-          ))}
+              </ScrollStackItem>
+            ))}
+          </ScrollStack>
         </div>
       </div>
     </section>

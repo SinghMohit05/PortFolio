@@ -152,14 +152,14 @@ export default function Timeline() {
   return (
     <section
       id="experience"
-      className="relative py-20 lg:py-28 overflow-hidden"
+      className="relative py-20 lg:py-28"
     >
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute right-0 top-1/3 translate-x-1/4">
+        <div className="absolute right-0 top-1/4 translate-x-1/4">
           <div className="h-[500px] w-[500px] rounded-full bg-primary/4 blur-[140px]" />
         </div>
-        <div className="absolute bottom-0 left-0 -translate-x-1/3 translate-y-1/4">
-          <div className="h-[400px] w-[400px] rounded-full bg-primary/3 blur-[120px]" />
+        <div className="absolute top-1/2 left-0 -translate-x-1/4">
+          <div className="h-[450px] w-[450px] rounded-full bg-primary/3 blur-[140px]" />
         </div>
       </div>
 

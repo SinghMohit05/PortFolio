@@ -336,13 +336,13 @@ export default function Skills() {
       : filteredSkills;
 
   return (
-    <section id="skills" className="relative py-20 lg:py-32 overflow-hidden">
+    <section id="skills" className="relative py-20 lg:py-32">
       {/* Background ambient glowing orbs */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute right-0 top-1/4 translate-x-1/3 -translate-y-1/2">
+        <div className="absolute right-0 top-1/4 translate-x-1/4 -translate-y-1/4">
           <div className="h-[500px] w-[500px] rounded-full bg-primary/5 blur-[150px]" />
         </div>
-        <div className="absolute left-0 bottom-1/4 -translate-x-1/3 translate-y-1/2">
+        <div className="absolute left-0 top-2/3 -translate-x-1/4">
           <div className="h-[450px] w-[450px] rounded-full bg-primary/4 blur-[130px]" />
         </div>
       </div>
